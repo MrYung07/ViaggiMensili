@@ -95,3 +95,33 @@ aside .side-note{margin-top:auto}
  #settings{scroll-margin-top:75px}
  #stats,#calendar{scroll-margin-top:75px}
 }
+
+.full-section{scroll-margin-top:20px;padding:20px;margin-top:18px}
+.full-section h2{display:flex;align-items:center;gap:9px;margin-bottom:8px}
+.section-description{color:#5b7394;font-size:13px;line-height:1.6;margin:0 0 20px}
+.stat-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.stat-cards>div{border:1px solid #dce7f4;border-radius:9px;background:#f8fbff;padding:17px;display:flex;flex-direction:column;gap:9px;min-width:0}
+.stat-cards span{font-size:13px;color:#58718f}.stat-cards strong{font-size:22px;color:#0b3269;overflow-wrap:anywhere}
+.full-section h3{font-size:15px;margin:25px 0 14px}
+.bar-chart{display:grid;grid-template-columns:repeat(31,minmax(0,1fr));gap:4px;align-items:end;height:145px;border-bottom:1px solid #dce7f4;padding:8px 0 0}
+.bar-item{display:flex;min-width:0;height:100%;flex-direction:column;align-items:center;justify-content:flex-end;gap:5px}
+.bar-track{height:112px;width:100%;display:flex;align-items:flex-end;justify-content:center;background:#f0f5fb;border-radius:4px 4px 0 0;overflow:hidden}
+.bar-track span{width:100%;min-height:3px;border-radius:4px 4px 0 0;background:linear-gradient(180deg,#4b98e7,#1764b8)}
+.bar-item small{font-size:9px;color:#647d9d}
+.setting-field{display:flex;flex-direction:column;gap:8px;max-width:420px;font-size:14px;font-weight:600}
+.setting-field input{height:46px;border:1px solid #d6e3f3;border-radius:8px;padding:10px 12px;background:#fbfdff;font-size:16px}
+.settings-save{max-width:420px;margin-top:15px}
+.settings-confirm{color:#17653b;background:#e6f7ed;padding:11px 13px;border-radius:7px;font-size:13px;max-width:420px}
+.settings-info{display:flex;flex-direction:column;align-items:flex-start;gap:9px;border-top:1px solid #e3edf7;margin-top:24px;padding-top:18px;font-size:13px;color:#58718f}
+.settings-info strong{font-size:15px;color:#0b3269}.settings-info .skip-btn{padding:0 14px}
+@media(max-width:700px){
+ .full-section{scroll-margin-top:75px;margin-top:14px;padding:15px}
+ .stat-cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+ .stat-cards>div{padding:12px;gap:7px}
+ .stat-cards span{font-size:11px}.stat-cards strong{font-size:18px}
+ .bar-chart{gap:2px;height:120px}
+ .bar-track{height:90px}
+ .bar-item small{font-size:8px}
+ .full-section h3{margin-top:20px}
+}
+@media(max-width:360px){.stat-cards strong{font-size:16px}.bar-chart{gap:1px}}
