@@ -1,0 +1,13 @@
+"use client";
+import {useEffect,useState} from "react";
+import Link from "next/link";
+import {ArrowLeft,ChartNoAxesCombined} from "lucide-react";
+import {createClient} from "@/lib/supabase/client";
+type Trip={id:string;trip_date:string;amount:number;note:string|null};
+const euro=(n:number)=>new Intl.NumberFormat("it-IT",{style:"currency",currency:"EUR"}).format(n);
+export default function StatsPage(){
+ const [trips,setTrips]=useState<Trip[]>([]),[month,setMonth]=useState(new Date().toISOString().slice(0,7)),[error,setError]=useState(""),[loading,setLoading]=useState(true);
+ useEffect(()=>{let live=true;(async()=>{const supabase=createClient();if(!supabase){if(live){setError("Configura Supabase per consultare le statistiche reali.");setLoading(false)}return}const {data:{user}}=await supabase.auth.getUser();if(!user){if(live){setError("Accedi per vedere le statistiche del tuo account.");setLoading(false)}return}const [y,m]=month.split("-").map(Number);const start=month+"-01",end=month+"-"+String(new Date(y,m,0).getDate()).padStart(2,"0");const {data,error:e}=await supabase.from("trips").select("id,trip_date,amount,note").gte("trip_date",start).lte("trip_date",end).order("trip_date");if(live){if(e)setError(e.message);else setTrips((data??[]) as Trip[]);setLoading(false)}})();return()=>{live=false}},[month]);
+ const total=trips.reduce((s,t)=>s+Number(t.amount),0);
+ return <main className="settings-page"><Link className="login-back" href="/"><ArrowLeft size={17}/> Torna al calendario</Link><section className="panel settings-page-card"><h1><ChartNoAxesCombined size={25}/> Statistiche</h1><p className="section-description">Riepilogo delle notti registrate nel mese selezionato.</p><label className="setting-field">Mese<input type="month" value={month} onChange={e=>{setMonth(e.target.value);setLoading(true);setError("")}}/></label>{error&&<p className="notice">{error}</p>}{loading?<p>Caricamento statistiche…</p>:<div className="stat-cards"><div><span>Notti registrate</span><strong>{trips.length}</strong></div><div><span>Totale notti</span><strong>{euro(total)}</strong></div><div><span>Media per notte</span><strong>{euro(trips.length?total/trips.length:0)}</strong></div><div><span>Giorni con notte</span><strong>{new Set(trips.map(t=>t.trip_date)).size}</strong></div></div>}<h3>Dettaglio notti</h3>{!loading&&trips.map(t=><div className="stats-row" key={t.id}><span>{new Date(t.trip_date+"T12:00:00").toLocaleDateString("it-IT",{weekday:"long",day:"2-digit",month:"long"})}<small>{t.note||"Notte registrata"}</small></span><strong>{euro(Number(t.amount))}</strong></div>)}</section></main>
+}
