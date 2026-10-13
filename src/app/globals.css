@@ -230,3 +230,17 @@ aside .side-note{margin-top:auto}
  .login-form{gap:13px}
  .login-card-footer{margin-left:-20px;margin-right:-20px}
 }
+
+/* Dedicated settings and statistics pages */
+.settings-page{min-height:100vh;display:flex;align-items:flex-start;justify-content:center;padding:100px 18px 40px;background:radial-gradient(ellipse at 10% 10%,#e3efff 0,transparent 40%),#f7faff;color:#0b3269}
+.settings-page-card{width:min(100%,680px);padding:28px;background:#fff;border-radius:16px;box-shadow:0 16px 48px #244e7910}
+.settings-page-card h1{display:flex;align-items:center;gap:10px;font-size:25px;margin-bottom:10px}
+.settings-page-card .setting-field{margin:17px 0;max-width:none}
+.settings-page-card .settings-save{display:flex;align-items:center;gap:8px;max-width:100%;margin-top:20px}
+.settings-checkbox{display:flex;align-items:center;gap:10px;margin-top:20px;color:#27476f;font-size:14px}
+.settings-checkbox input{width:18px;height:18px;accent-color:#1764b8}
+.stats-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 4px;border-bottom:1px solid #e4edf7;text-transform:capitalize}
+.stats-row span{display:flex;flex-direction:column;gap:5px}.stats-row small{font-size:12px;color:#71839c}.stats-row strong{white-space:nowrap}
+.export-pdf{display:inline-flex;align-items:center;gap:8px;margin-top:12px;padding:10px 14px;border:1px solid #c9def5;border-radius:9px;background:#edf5ff;color:#155ca7;font-size:13px;font-weight:700}
+.export-pdf:hover{background:#dfeeff}
+@media(max-width:700px){.settings-page{padding:76px 12px 24px}.settings-page-card{padding:18px}.settings-page-card h1{font-size:22px}.export-pdf{margin:10px 0 4px}}
