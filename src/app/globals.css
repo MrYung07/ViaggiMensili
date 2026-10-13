@@ -22,3 +22,56 @@ main{min-width:0;padding:17px 22px 32px 23px;display:grid;grid-template-columns:
 @media(max-width:700px){.top{height:64px;font-size:20px;padding:0 14px}.top>span{gap:8px}.top button{font-size:12px}.layout{display:block}aside{display:none}main{padding:14px;display:block}.heading{display:block;padding-bottom:10px}.month{margin:13px 0;justify-content:space-between;width:100%}.calendar{overflow-x:auto}.week,.days{min-width:560px}.fields{grid-template-columns:1fr;gap:12px}.right{display:block;margin-top:18px}.right>.panel:first-of-type{margin-top:0}.recent{margin-top:16px}.day{height:76px}.panel{padding:14px}.summary{padding:18px}.stats div{padding:13px 7px}.stats b{font-size:14px}}
 .action-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:15px;padding-top:16px;border-top:1px solid #edf2f8}.action-row .btn{margin:0}.skip-btn{height:49px;border:1px solid #d9e5f3;border-radius:8px;background:#eaf1f9;color:#0a326a;font-weight:600;font-size:14px;display:flex;align-items:center;justify-content:center}.skip-btn:hover{background:#dfeaf7}
 @media(max-width:700px){.action-row{grid-template-columns:1fr;gap:9px}.presets{margin-top:10px}}
+
+/* Mobile-first finishing touches */
+@media(max-width:700px){
+ html,body{width:100%;overflow-x:hidden}
+ .top{position:relative;height:60px;padding:0 12px;font-size:18px;letter-spacing:-.3px}
+ .top>span{gap:7px;min-width:0}.top button{max-width:48%;overflow-wrap:anywhere;font-size:11px}
+ main{width:100%;padding:12px;overflow:hidden}
+ .heading h1{font-size:22px}.heading p{font-size:13px;max-width:38ch}
+ .month{height:44px;font-size:15px;padding:0 9px;margin:10px 0 13px}
+ .calendar{width:100%;overflow:visible}
+ .week,.days{min-width:0;width:100%;grid-template-columns:repeat(7,minmax(0,1fr))}
+ .week div{font-size:10px;padding:5px 0;height:35px;letter-spacing:-.3px}
+ .day{height:clamp(48px,15vw,68px);padding:6px 2px;gap:5px;align-items:center;text-align:center;justify-content:flex-start}
+ .day span:first-child{font-size:12px}
+ .day span:nth-child(2){display:none}
+ .day span:last-child{font-size:10px;letter-spacing:-.4px;max-width:100%;overflow:hidden}
+ .panel{margin-top:13px;padding:13px;border-radius:9px}
+ .panel h2{font-size:17px;margin-bottom:14px}
+ .fields{grid-template-columns:minmax(0,1fr);gap:12px}
+ .fields label{font-size:13px;gap:6px}
+ .fields input{height:43px;font-size:16px}
+ .presets{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:13px 0}
+ .presets button{padding:10px 5px;min-height:40px}
+ .action-row{grid-template-columns:minmax(0,1fr);gap:9px;margin-top:12px;padding-top:12px}
+ .action-row .btn,.skip-btn{height:46px;width:100%;font-size:13px}
+ .right{display:flex;flex-direction:column;gap:12px;margin-top:14px}
+ .right>.summary{border-radius:9px;min-height:92px;padding:17px 18px}
+ .summary>svg{width:32px;height:32px}
+ .summary strong{font-size:23px}
+ .right>.panel:first-of-type{margin:0;padding:12px}
+ .stats div{min-height:48px;padding:12px 5px;font-size:13px}
+ .stats b{font-size:14px}
+ .recent{margin:0;width:100%}
+ .recent h2{font-size:17px;padding:14px 12px}
+ .recent>div{padding:12px;min-height:58px;gap:6px;font-size:12px}
+ .recent>div span{min-width:0;overflow-wrap:anywhere}
+ .recent b{font-size:13px}
+ .notice{overflow-wrap:anywhere}
+}
+@media(min-width:390px) and (max-width:700px){
+ .day{padding-left:4px;padding-right:4px}
+ .day span:last-child{font-size:11px}
+}
+@media(max-width:360px){
+ .top{font-size:16px}.top>span{gap:4px}
+ main{padding:9px}
+ .week div{font-size:9px}
+ .day{height:47px;padding:4px 1px}
+ .day span:first-child{font-size:11px}
+ .day span:last-child{font-size:9px}
+ .month{font-size:13px}
+ .summary{grid-template-columns:32px 1fr;column-gap:10px}
+}
