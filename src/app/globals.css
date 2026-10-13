@@ -166,3 +166,20 @@ aside .side-note{margin-top:auto}
 
 .login-mode-toggle{display:block;width:100%;margin-top:15px;padding:11px 12px;border:1px solid #d8e5f4;border-radius:9px;background:#f4f8fd;color:#175da6;font-size:13px;font-weight:650}
 .login-mode-toggle:hover{background:#eaf3ff;border-color:#bfd5ef}
+
+
+/* Login tabs and messages for the requested sign-in / account creation flow */
+.login-tabs{display:grid;grid-template-columns:1fr 1fr;gap:5px;background:#f0f3f8;padding:5px;border-radius:11px;margin:23px 0}
+.login-tab{background:transparent;color:#718096;padding:11px;border-radius:8px;font-size:14px;font-weight:700}
+.login-tab.active{background:white;color:#17243a;box-shadow:0 1px 5px #00000010}
+.login-actions{text-align:center;margin-top:8px}
+.login-text-button{background:none;border:0;color:#1d5da8;padding:12px 0;font-size:13px;font-weight:650}
+.login-text-button:hover{text-decoration:underline}
+.login-text-button:disabled{opacity:.6;cursor:wait}
+.login-message,.login-feedback{font-size:14px;line-height:1.55;padding:12px;border-radius:10px;background:#f1f5f9;color:#334155;overflow-wrap:anywhere}
+.login-feedback{display:flex;flex-direction:column;align-items:center;text-align:center;gap:9px;margin-top:18px}
+.login-feedback>svg{color:#22965b}
+.login-feedback p{margin:0}
+.login-feedback .login-primary{margin-top:7px}
+.recovery-back{display:block;margin:8px auto 0}
+.login-card-footer{overflow-wrap:anywhere}
