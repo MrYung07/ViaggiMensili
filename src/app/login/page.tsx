@@ -3,12 +3,14 @@
 import { FormEvent, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { ArrowLeft, BusFront, CheckCircle2, LoaderCircle, Mail } from "lucide-react";
+import { ArrowLeft, BusFront, CheckCircle2, LoaderCircle, Mail, LockKeyhole } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 
 export default function LoginPage() {
   const router = useRouter();
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [mode, setMode] = useState<"link" | "password">("link");
   const [busy, setBusy] = useState(false);
   const [sent, setSent] = useState(false);
   const [error, setError] = useState("");
@@ -22,13 +24,17 @@ export default function LoginPage() {
       return;
     }
     setBusy(true);
-    const { error: authError } = await supabase.auth.signInWithOtp({
-      email: email.trim(),
-      options: { emailRedirectTo: window.location.origin },
-    });
-    setBusy(false);
-    if (authError) setError(authError.message);
-    else setSent(true);
+    if (mode === "password") {
+      const { error: authError } = await supabase.auth.signInWithPassword({ email: email.trim(), password });
+      setBusy(false);
+      if (authError) setError("Accesso non riuscito. Controlla email e password e riprova.");
+      else { router.push("/"); router.refresh(); }
+    } else {
+      const { error: authError } = await supabase.auth.signInWithOtp({ email: email.trim(), options: { emailRedirectTo: window.location.origin } });
+      setBusy(false);
+      if (authError) setError(authError.message);
+      else setSent(true);
+    }
   }
 
   return (
@@ -40,15 +46,17 @@ export default function LoginPage() {
         <div className="login-brand"><span className="login-logo"><BusFront size={27} /></span><span>Viaggi <strong>Mensili</strong></span></div>
         {!sent ? (
           <>
-            <div className="login-icon"><Mail size={25} /></div>
+            <div className="login-icon">{mode === "password" ? <LockKeyhole size={25} /> : <Mail size={25} />}</div>
             <h1>Accedi al tuo account</h1>
             <p className="login-subtitle">Tieni tutti i tuoi viaggi e i tuoi guadagni in un unico posto.</p>
             <form onSubmit={handleSubmit} className="login-form">
               <label htmlFor="login-email">Indirizzo email</label>
               <input id="login-email" type="email" autoComplete="email" placeholder="nome@esempio.it" value={email} onChange={e => setEmail(e.target.value)} required />
-              <button type="submit" disabled={busy}>{busy ? <><LoaderCircle className="login-spinner" size={18} /> Invio in corso...</> : <>Invia il link di accesso <ArrowLeft className="login-arrow" size={18} /></>}</button>
+              {mode === "password" && <><label htmlFor="login-password">Password</label><input id="login-password" type="password" autoComplete="current-password" placeholder="Inserisci la password" value={password} onChange={e => setPassword(e.target.value)} required /></>}
+              <button type="submit" disabled={busy}>{busy ? <><LoaderCircle className="login-spinner" size={18} /> {mode === "password" ? "Accesso in corso..." : "Invio in corso..."}</> : mode === "password" ? <>Accedi <ArrowLeft className="login-arrow" size={18} /></> : <>Invia il link di accesso <ArrowLeft className="login-arrow" size={18} /></>}</button>
             </form>
-            <p className="login-privacy">Ti invieremo un link sicuro via email. Non serve una password.</p>
+            <button type="button" className="login-mode-toggle" onClick={() => { setMode(mode === "link" ? "password" : "link"); setError(""); }}>{mode === "link" ? "Usa la password" : "Preferisco il link via email"}</button>
+            <p className="login-privacy">{mode === "password" ? "Accedi con email e password del tuo account." : "Ti invieremo un link sicuro via email. Non serve una password."}</p>
             {error && <div className="login-error" role="alert">{error}</div>}
           </>
         ) : (
