@@ -14,3 +14,6 @@ create policy "Users add own trips" on public.trips for insert to authenticated 
 create policy "Users update own trips" on public.trips for update to authenticated using ((select auth.uid())=user_id) with check ((select auth.uid())=user_id);
 create policy "Users delete own trips" on public.trips for delete to authenticated using ((select auth.uid())=user_id);
 grant select,insert,update,delete on public.trips to authenticated;
+
+-- Impedisce più registrazioni per lo stesso utente nella stessa data.
+create unique index if not exists trips_one_night_per_user_date on public.trips(user_id, trip_date);
