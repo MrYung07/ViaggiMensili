@@ -264,3 +264,13 @@ aside .side-note{margin-top:auto}
  .stats-row strong{font-size:14px}
  .export-pdf{min-height:42px}
 }
+
+/* Grafico delle spese mensili */
+.monthly-chart{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));align-items:end;gap:clamp(3px,1vw,10px);min-height:225px;padding:18px 8px 8px;margin:12px 0 26px;border:1px solid #dce7f4;border-radius:12px;background:linear-gradient(180deg,#fbfdff,#f2f7fd);overflow:hidden}
+.monthly-bar-wrap{min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:7px;height:195px}
+.monthly-value{font-size:clamp(8px,.85vw,11px);color:#486789;white-space:nowrap;min-height:14px}
+.monthly-bar{width:min(70%,30px);min-height:2px;background:linear-gradient(180deg,#83b8f0,#347bc5);border-radius:5px 5px 2px 2px;transition:height .2s}
+.monthly-bar.selected{background:linear-gradient(180deg,#2678cf,#0b4f9e);box-shadow:0 0 0 2px #c5def8}
+.monthly-label{font-size:clamp(9px,1vw,12px);color:#355678}
+.settings-page-card h3{font-size:16px;margin:24px 0 10px;color:#0b3269}
+@media(max-width:700px){.monthly-chart{gap:2px;padding:14px 3px 8px;min-height:205px}.monthly-bar-wrap{height:175px;gap:5px}.monthly-value{font-size:8px;transform:rotate(-45deg);transform-origin:center;min-height:19px}.monthly-label{font-size:10px}.monthly-bar{width:70%}}
