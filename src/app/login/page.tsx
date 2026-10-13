@@ -64,7 +64,7 @@ export default function LoginPage() {
         }
       } else {
         const { error: authError } = await supabase.auth.signInWithPassword({ email: email.trim(), password });
-        if (authError) setError("Accesso non riuscito. Controlla email e password e riprova.");
+        if (authError) setError(authError.message === "Invalid login credentials" ? "Email o password non corretti. Se non hai ancora creato un account, premi «Crea account»." : authError.message);
         else {
           router.replace("/");
           router.refresh();
