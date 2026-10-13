@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, Suspense, useEffect, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ArrowLeft, Plane, LoaderCircle, CheckCircle2 } from "lucide-react";
@@ -19,8 +19,17 @@ function LoginContent() {
   const [done, setDone] = useState(false);
 
   useEffect(() => {
-    if (new URLSearchParams(window.location.search).get("recovery") === "1") setMode("recovery");
-  }, []);
+    if (new URLSearchParams(window.location.search).get("recovery") === "1") {
+      setMode("recovery");
+      return;
+    }
+    const supabase = createClient();
+    if (supabase) {
+      supabase.auth.getSession().then(({ data }) => {
+        if (data.session) router.replace("/");
+      }).catch(() => {});
+    }
+  }, [router]);
 
   function changeMode(next: Mode) {
     setMode(next);
@@ -150,16 +159,5 @@ function LoginContent() {
 }
 
 export default function LoginPage() {
-  return (
-    <Suspense fallback={
-      <main className="login-page">
-        <section className="login-card">
-          <div className="login-brand"><span className="login-logo"><Plane size={26} /></span><span>Viaggi <strong>Mensili</strong></span></div>
-          <p className="login-subtitle">Caricamento della pagina di accesso...</p>
-        </section>
-      </main>
-    }>
-      <LoginContent />
-    </Suspense>
-  );
+  return <LoginContent />;
 }
