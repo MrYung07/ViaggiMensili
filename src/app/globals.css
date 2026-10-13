@@ -274,3 +274,13 @@ aside .side-note{margin-top:auto}
 .monthly-label{font-size:clamp(9px,1vw,12px);color:#355678}
 .settings-page-card h3{font-size:16px;margin:24px 0 10px;color:#0b3269}
 @media(max-width:700px){.monthly-chart{gap:2px;padding:14px 3px 8px;min-height:205px}.monthly-bar-wrap{height:175px;gap:5px}.monthly-value{font-size:8px;transform:rotate(-45deg);transform-origin:center;min-height:19px}.monthly-label{font-size:10px}.monthly-bar{width:70%}}
+
+/* Miglioramenti mobile: importi leggibili e modulo allineato */
+@media(max-width:700px){
+ .day{padding:5px 1px;gap:4px;justify-content:center;min-width:0}
+ .day span:first-child{font-size:12px;line-height:1.1}
+ .day .day-amount{display:block!important;font-size:clamp(8px,2.45vw,11px)!important;line-height:1.15;letter-spacing:-.45px;color:#075fc4;white-space:nowrap;max-width:100%;overflow:visible;text-overflow:clip;font-weight:700}
+ .fields label{width:100%;text-align:left;align-items:stretch}
+ .fields input{display:block;width:100%;box-sizing:border-box;text-align:left;margin:0}
+ .settings-page-card .setting-field input{text-align:left}
+}
