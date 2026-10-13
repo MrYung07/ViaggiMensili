@@ -284,3 +284,22 @@ aside .side-note{margin-top:auto}
  .fields input{display:block;width:100%;box-sizing:border-box;text-align:left;margin:0}
  .settings-page-card .setting-field input{text-align:left}
 }
+
+/* Fix iPhone: native date input overflowing the card */
+@media(max-width:700px){
+ .fields{display:grid;grid-template-columns:minmax(0,1fr)!important;width:100%;min-width:0;gap:12px}
+ .fields label{display:flex;width:100%;min-width:0;max-width:100%;box-sizing:border-box;align-items:stretch}
+ .fields input,.fields input[type="date"],.fields input[type="number"],.fields input[type="text"]{
+  display:block;width:100%;min-width:0;max-width:100%;box-sizing:border-box;
+  height:48px;padding:10px 12px;font-size:16px;line-height:normal;
+ }
+ .fields input[type="date"]{
+  -webkit-appearance:none;appearance:none;
+  text-align:left;text-align-last:left;
+ }
+ .fields input[type="date"]::-webkit-date-and-time-value{text-align:left}
+ .fields input[type="date"]::-webkit-calendar-picker-indicator{margin:0 0 0 4px;flex:0 0 auto}
+ .panel{min-width:0;max-width:100%;overflow:hidden}
+ .action-row,.presets{min-width:0;width:100%}
+ .right>.summary{min-width:0;max-width:100%;overflow-wrap:anywhere}
+}
