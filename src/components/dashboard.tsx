@@ -4,7 +4,7 @@ import {CalendarDays,ChevronLeft,ChevronRight,Wallet,Clock3,Plus,Trash2,LogIn,Lo
 import {createClient} from "@/lib/supabase/client";
 type Trip={id:string;user_id:string;trip_date:string;amount:number;note:string|null};
 const months=["Gennaio","Febbraio","Marzo","Aprile","Maggio","Giugno","Luglio","Agosto","Settembre","Ottobre","Novembre","Dicembre"];
-const demoTrips:Trip[]=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31].map(d=>({id:"demo-"+d,user_id:"demo",trip_date:"2026-10-"+String(d).padStart(2,"0"),amount:({1:80,2:50,3:128,4:80,5:80,6:50,7:128,8:80,9:50,10:128,11:80,12:0,13:50,14:80,15:128,16:50,17:80,18:128,19:80,20:50,21:128,22:80,23:50,24:128,25:80,26:50,27:80,28:128,29:50,30:80,31:128} as Record<number,number>)[d],note:d===12?"Trasferta a Roma":null}));
+const demoTrips:Trip[]=[];
 const weekdays=["Lunedì","Martedì","Mercoledì","Giovedì","Venerdì","Sabato","Domenica"];
 const key=(d:Date)=>d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
 const eur=(n:number)=>new Intl.NumberFormat("it-IT",{style:"currency",currency:"EUR"}).format(n);
