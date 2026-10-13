@@ -162,3 +162,7 @@ aside .side-note{margin-top:auto}
 .login-success button{margin-top:12px;padding:11px 16px;border:1px solid #d7e3f2;border-radius:8px;background:#edf4fd;color:#165aa3;font-weight:600}
 .login-bottom{position:absolute;bottom:17px;left:0;right:0;text-align:center;color:#91a0b5;font-size:11px;margin:0}
 @media(max-width:500px){.login-page{padding:74px 14px 55px;align-items:center}.login-back{top:22px;left:16px;font-size:13px}.login-card{padding:27px 22px 0;border-radius:16px}.login-brand{margin-bottom:26px}.login-card h1{font-size:24px}.login-card-footer{margin-left:-22px;margin-right:-22px}.login-bottom{bottom:13px}}
+
+
+.login-mode-toggle{display:block;width:100%;margin-top:15px;padding:11px 12px;border:1px solid #d8e5f4;border-radius:9px;background:#f4f8fd;color:#175da6;font-size:13px;font-weight:650}
+.login-mode-toggle:hover{background:#eaf3ff;border-color:#bfd5ef}
