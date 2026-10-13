@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, Suspense, useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ArrowLeft, Plane, LoaderCircle, CheckCircle2 } from "lucide-react";
@@ -8,7 +8,7 @@ import { createClient } from "@/lib/supabase/client";
 
 type Mode = "signin" | "signup" | "recovery";
 
-export default function LoginPage() {
+function LoginContent() {
   const router = useRouter();
   const [mode, setMode] = useState<Mode>("signin");
   const [email, setEmail] = useState("");
@@ -146,5 +146,20 @@ export default function LoginPage() {
       </section>
       <p className="login-bottom">I tuoi viaggi, organizzati con semplicità.</p>
     </main>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={
+      <main className="login-page">
+        <section className="login-card">
+          <div className="login-brand"><span className="login-logo"><Plane size={26} /></span><span>Viaggi <strong>Mensili</strong></span></div>
+          <p className="login-subtitle">Caricamento della pagina di accesso...</p>
+        </section>
+      </main>
+    }>
+      <LoginContent />
+    </Suspense>
   );
 }
