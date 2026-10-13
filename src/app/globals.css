@@ -244,3 +244,23 @@ aside .side-note{margin-top:auto}
 .export-pdf{display:inline-flex;align-items:center;gap:8px;margin-top:12px;padding:10px 14px;border:1px solid #c9def5;border-radius:9px;background:#edf5ff;color:#155ca7;font-size:13px;font-weight:700}
 .export-pdf:hover{background:#dfeeff}
 @media(max-width:700px){.settings-page{padding:76px 12px 24px}.settings-page-card{padding:18px}.settings-page-card h1{font-size:22px}.export-pdf{margin:10px 0 4px}}
+
+/* Extra mobile polish for settings and stats */
+.settings-page{width:100%;min-width:0}
+.settings-page-card{min-width:0}
+.settings-page-card input,.settings-page-card button{max-width:100%}
+.settings-page-card .setting-field input{width:100%;min-width:0}
+.settings-page-card .login-back{z-index:2}
+@media(max-width:700px){
+ .settings-page{padding:72px 12px 24px}
+ .settings-page-card{padding:18px 15px;border-radius:13px}
+ .settings-page-card h1{font-size:21px}
+ .settings-page-card .setting-field{width:100%;font-size:13px}
+ .settings-page-card .setting-field input{height:47px;font-size:16px}
+ .settings-page-card .settings-save{width:100%;min-height:46px;justify-content:center}
+ .settings-checkbox{align-items:flex-start;line-height:1.5}
+ .settings-checkbox input{flex:0 0 18px;margin-top:2px}
+ .stats-row{align-items:flex-start;font-size:13px}
+ .stats-row strong{font-size:14px}
+ .export-pdf{min-height:42px}
+}
